@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+/* Custom xs breakpoint for very small phones */
+@custom-variant xs (@media (width >= 400px));
+
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent any element from busting out of the viewport */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar { width: 5px; }
@@ -14,6 +25,15 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: #d4a017; }
 
 ::selection { background: #d4a017; color: #0a1628; }
+
+/* Hide scrollbar for horizontal filter pills */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
